@@ -1,10 +1,11 @@
-mkdir datasets
-FILE=$1
-#URL=https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/$FILE.tar.gz
-URL=https://drive.google.com/drive/folders/1MdYZJEqCxyQI31AeXTLatD_-ZA4xitzN?usp=sharing$FILE.tar.gz
-TAR_FILE=./datasets/$FILE.tar.gz
-TARGET_DIR=./datasets/$FILE/
-wget -N $URL -O $TAR_FILE
-mkdir $TARGET_DIR
-tar -zxvf $TAR_FILE -C ./datasets/
-rm $TAR_FILE
+dataset_name = "edges2shoes"
+_URL = f'https://drive.google.com/drive/folders/1MdYZJEqCxyQI31AeXTLatD_-ZA4xitzN?usp=sharing{dataset_name}.tar.gz'
+
+path_to_zip = tf.keras.utils.get_file(
+    fname=f"{dataset_name}.tar.gz",
+    origin=_URL,
+    extract=True)
+
+path_to_zip  = pathlib.Path(path_to_zip)
+
+PATH = path_to_zip.parent/dataset_name
